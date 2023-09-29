@@ -34,7 +34,7 @@ console.log(allocateEngineer);
     
 
     const getAllTickets= async(req,res)=>{
-
+    console.log(req.body);
         var condition = {};
 
         const {maxPriority,minPriority,limitValue,page} = req.query;
@@ -64,6 +64,7 @@ console.log(allocateEngineer);
         try{
 
             const tickets = await ticketModel.find(condition).populate('assignee').populate("requestor").skip(skipValue).limit(limitValue).sort({"ticketPriority":-1}).cache(30);
+            console.log(tickets);
             
             res.status(200).send(tickets);
         }

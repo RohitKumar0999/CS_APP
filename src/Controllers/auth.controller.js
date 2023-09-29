@@ -28,10 +28,16 @@ console.log("Creating the user");
 
 
 
-const Login = async(req,res)=>{
+const Login = async (req,res)=>{
+    console.log(req.body);
     const User= await UserModel.findOne({userId:req.body.userId})
-           if(User===null)
-           res.status(400).send({message:"UserId passed is !Invalid"})
+    console.log(User);
+    console.log(req.body.userId);
+
+           if(User===null){
+               res.status(400).send({message:"UserId passed is !Invalid"})
+              console.log("UserId passed is Invalid");
+           }
 
         const IsValidPassword= bcrypt.compareSync(req.body.password,User.password)
         if(!IsValidPassword){

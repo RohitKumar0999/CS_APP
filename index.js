@@ -8,10 +8,12 @@ const PORTConfig = require('./src/config/PORT.config.js');
 const app = express();
 var cachegoose = require('cachegoose');
 const { configDotenv } = require('dotenv');
+var cors = require('cors')
 
 // const port = 3000;
+app.use(cors())
 
-console.log(process.env);
+
 app.use(bodyParser.json()); //Here we are try/take the data that passed in the req object of route for use in middleware
 
 mongoose.connect(dbConfig.DB_URL)
